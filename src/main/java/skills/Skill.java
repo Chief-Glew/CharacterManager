@@ -4,13 +4,13 @@ import stats.Stat;
 
 public abstract class Skill {
 
-    private Stat rollModifier;
+    private Class<? extends Stat> rollModifier;
 
-    protected Skill(Stat rollModifier) {
+    protected Skill(Class<? extends Stat> rollModifier) {
         this.rollModifier = rollModifier;
     }
 
-    public Stat getRollModifier() {
+    public Class<? extends Stat> getRollModifier() {
         return rollModifier;
     }
 }

@@ -39,4 +39,8 @@ public abstract class Stat {
         sb.append('}');
         return sb.toString();
     }
+
+    public int getModifier() {
+        return modifier;
+    }
 }

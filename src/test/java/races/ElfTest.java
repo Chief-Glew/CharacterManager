@@ -6,9 +6,7 @@ import skills.Perception;
 import skills.SkillFactory;
 import stats.*;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -39,7 +37,14 @@ public class ElfTest {
 
     @Test
     public void testThatAnElfThatIsProficientInPerceptionHasAPlusTwoModifierOnPerceptionChecks(){
-        Race skillFactory.getPerception());
-        assertEquals(2, elf.getModifier(Perception.class));
+        Perception perception = new Perception();
+        elf.addProficiency(perception);
+        /*
+        elf has a bunch of skill objects representing proficiencies
+        when a roll is to be made an object of the required type is passed to the elf (in this case perception)
+        (the elf can compare this to it's proficiencies, adding the proficiency modifier to it's return if it is proficient)
+        the elf is proficient in perception so adds it's proficiency modifier (+2) to it's wis modifier (+0) returning 2
+         */
+        assertEquals(2, elf.getModifier(perception));
     }
 }

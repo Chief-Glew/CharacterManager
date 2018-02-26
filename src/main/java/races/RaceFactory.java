@@ -1,5 +1,6 @@
 package races;
 
+import skills.Skill;
 import stats.*;
 
 import java.util.HashSet;
@@ -14,6 +15,6 @@ public class RaceFactory {
         stats.add(new Intelligence(intel));
         stats.add(new Wisdom(wis));
         stats.add(new Charisma(cha));
-        return new Elf(stats);
+        return new Elf(stats, new HashSet<Skill>(), 2);
     }
 }
