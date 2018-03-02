@@ -1,4 +1,4 @@
-package com.chiefglew.skills;
+package com.chiefglew.dndcharacter.application.skills;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
