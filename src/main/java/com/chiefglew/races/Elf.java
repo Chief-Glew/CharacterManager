@@ -1,6 +1,6 @@
-package races;
+package com.chiefglew.races;
 
-import skills.Skill;
+import com.chiefglew.skills.Skill;
 import stats.Stat;
 
 import java.util.Set;

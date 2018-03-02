@@ -1,14 +1,16 @@
-package skills;
+package com.chiefglew.skills;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
+@Component
 public class SkillFactory {
 
-    @Autowired
     private Set<Skill> skills;
 
+    @Autowired
     public SkillFactory(Set<Skill> skills){
         this.skills = skills;
     }

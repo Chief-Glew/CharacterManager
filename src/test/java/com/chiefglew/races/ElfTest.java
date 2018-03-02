@@ -1,32 +1,33 @@
-package races;
+package com.chiefglew.races;
 
+import com.chiefglew.config.AppConfig;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import skills.Perception;
-import skills.Skill;
-import skills.SkillFactory;
-import skills.StrengthCheck;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
+import com.chiefglew.skills.Skill;
+import com.chiefglew.skills.SkillFactory;
 import stats.*;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
-
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = {AppConfig.class})
 public class ElfTest {
 
     private Race elf;
+    @Autowired
     private SkillFactory skillFactory;
 
     @Before
     public void init(){
         RaceFactory raceFactory = new RaceFactory();
         elf = raceFactory.getElf(10,10,10,10,10,8);
-        //ApplicationContext applicationContext = dont remember spring.....
-        skillFactory = new SkillFactory(new HashSet<Skill>(Arrays.asList(new Perception(), new StrengthCheck())));
     }
 
     @Test

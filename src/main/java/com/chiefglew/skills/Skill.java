@@ -1,4 +1,4 @@
-package skills;
+package com.chiefglew.skills;
 
 import stats.Stat;
 

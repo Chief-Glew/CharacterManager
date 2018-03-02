@@ -1,4 +1,4 @@
-package randomGenerators;
+package com.chiefglew.randomGenerators;
 
 public class Dice {
 
