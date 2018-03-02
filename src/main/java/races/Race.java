@@ -33,10 +33,8 @@ public abstract class Race {
                 modifier = stat.getModifier();
             }
         }
-        for (Skill proficiency : skills){
-            if (skill == proficiency){
-                modifier += proficiencyModifier;
-            }
+        if (skills.contains(skill)){
+            modifier += proficiencyModifier;
         }
         return modifier;
     }

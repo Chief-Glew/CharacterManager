@@ -2,10 +2,14 @@ package races;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
 import skills.Perception;
+import skills.Skill;
 import skills.SkillFactory;
+import skills.StrengthCheck;
 import stats.*;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,7 +24,9 @@ public class ElfTest {
     @Before
     public void init(){
         RaceFactory raceFactory = new RaceFactory();
-        elf = raceFactory.getElf(10,10,10,10,10,10);
+        elf = raceFactory.getElf(10,10,10,10,10,8);
+        //ApplicationContext applicationContext = dont remember spring.....
+        skillFactory = new SkillFactory(new HashSet<Skill>(Arrays.asList(new Perception(), new StrengthCheck())));
     }
 
     @Test
@@ -31,20 +37,20 @@ public class ElfTest {
         stats.add(new Constitution(10));
         stats.add(new Intelligence(10));
         stats.add(new Wisdom(10));
-        stats.add(new Charisma(10));
+        stats.add(new Charisma(8));
         assertEquals(stats, elf.getStats());
     }
 
     @Test
     public void testThatAnElfThatIsProficientInPerceptionHasAPlusTwoModifierOnPerceptionChecks(){
-        Perception perception = new Perception();
+        Skill perception = skillFactory.getPerception();
         elf.addProficiency(perception);
-        /*
-        elf has a bunch of skill objects representing proficiencies
-        when a roll is to be made an object of the required type is passed to the elf (in this case perception)
-        (the elf can compare this to it's proficiencies, adding the proficiency modifier to it's return if it is proficient)
-        the elf is proficient in perception so adds it's proficiency modifier (+2) to it's wis modifier (+0) returning 2
-         */
         assertEquals(2, elf.getModifier(perception));
+    }
+
+    @Test
+    public void testThatAnElfThatIsNotProficientInStrengthChecksHasAPlusZeroModifierOnStrengthChecks(){
+        Skill strengthCheck = skillFactory.getStrength();
+        assertEquals(0,elf.getModifier(strengthCheck));
     }
 }
