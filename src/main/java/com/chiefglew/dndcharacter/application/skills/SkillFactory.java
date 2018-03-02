@@ -15,10 +15,6 @@ public class SkillFactory {
         this.skills = skills;
     }
 
-    public Skill getPerception() {
-        return getSkill(Perception.class);
-    }
-
     private Skill getSkill(Class<? extends Skill> skillClass) {
         Skill returnValue = null;
         for (Skill skill: skills){
@@ -29,7 +25,11 @@ public class SkillFactory {
         return returnValue;
     }
 
-    public Skill getStrength() {
+    public Skill getPerception() {
+        return getSkill(Perception.class);
+    }
+
+    public Skill getStrengthCheck() {
         return getSkill(StrengthCheck.class);
     }
 }

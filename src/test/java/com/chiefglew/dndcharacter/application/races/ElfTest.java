@@ -51,7 +51,7 @@ public class ElfTest {
 
     @Test
     public void testThatAnElfThatIsNotProficientInStrengthChecksHasAPlusZeroModifierOnStrengthChecks(){
-        Skill strengthCheck = skillFactory.getStrength();
+        Skill strengthCheck = skillFactory.getStrengthCheck();
         assertEquals(0,elf.getModifier(strengthCheck));
     }
 }
