@@ -5,4 +5,5 @@ public class PlatinumPiece extends Currency {
     public PlatinumPiece(int amount) {
         super("pp", amount);
     }
+
 }
