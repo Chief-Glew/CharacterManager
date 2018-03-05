@@ -1,6 +1,6 @@
 package com.chiefglew.dndcharacter.application.skills;
 
-import stats.Stat;
+import com.chiefglew.dndcharacter.application.stats.Stat;
 
 public abstract class Skill {
 

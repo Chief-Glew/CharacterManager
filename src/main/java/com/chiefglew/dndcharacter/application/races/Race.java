@@ -1,7 +1,7 @@
 package com.chiefglew.dndcharacter.application.races;
 
 import com.chiefglew.dndcharacter.application.skills.Skill;
-import stats.Stat;
+import com.chiefglew.dndcharacter.application.stats.Stat;
 
 import java.util.Set;
 

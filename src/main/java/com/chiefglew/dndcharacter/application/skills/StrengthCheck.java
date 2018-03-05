@@ -1,7 +1,8 @@
 package com.chiefglew.dndcharacter.application.skills;
 
 import org.springframework.stereotype.Component;
-import stats.Strength;
+
+import com.chiefglew.dndcharacter.application.stats.Strength;
 
 @Component
 public class StrengthCheck extends Skill {

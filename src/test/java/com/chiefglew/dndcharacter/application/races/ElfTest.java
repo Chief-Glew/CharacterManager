@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import com.chiefglew.dndcharacter.application.skills.Skill;
 import com.chiefglew.dndcharacter.application.skills.SkillFactory;
-import stats.*;
+import com.chiefglew.dndcharacter.application.stats.*;
 
 import java.util.HashSet;
 import java.util.Set;
