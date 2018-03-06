@@ -37,6 +37,7 @@ public class AppConfig {
     }
 
     @Bean
+    @Scope("prototype")
     public Market smallMarket(ShortSword shortSword){
         Market smallMarket = new Market(new HashMap<Item, Integer>());
         smallMarket.addStock(shortSword, 10);

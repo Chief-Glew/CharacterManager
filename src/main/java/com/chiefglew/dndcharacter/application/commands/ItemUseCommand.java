@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.chiefglew.dndcharacter.application.randomGenerators.Dice;
 
-public interface ItemUseCommmand extends Command{
+public interface ItemUseCommand extends Command{
 	
 	void addTarget(Targetable target);
 	void removeTarget(Targetable target);

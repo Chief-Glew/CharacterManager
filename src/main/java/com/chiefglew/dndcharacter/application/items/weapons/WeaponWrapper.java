@@ -1,6 +1,6 @@
 package com.chiefglew.dndcharacter.application.items.weapons;
 
-import com.chiefglew.dndcharacter.application.commands.ItemUseCommmand;
+import com.chiefglew.dndcharacter.application.commands.ItemUseCommand;
 import com.chiefglew.dndcharacter.application.items.Item;
 import com.chiefglew.dndcharacter.application.items.Usable;
 import com.chiefglew.dndcharacter.application.randomGenerators.Dice;
@@ -42,7 +42,7 @@ public class WeaponWrapper extends Item implements Weapon {
 	}
 
 	@Override
-	public ItemUseCommmand useItem() {
+	public ItemUseCommand useItem() {
 		// TODO Auto-generated method stub
 		return null;
 	}

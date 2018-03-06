@@ -1,10 +1,9 @@
 package com.chiefglew.dndcharacter.application.items.weapons;
 
-import com.chiefglew.dndcharacter.application.commands.ItemUseCommmand;
+import com.chiefglew.dndcharacter.application.commands.ItemUseCommand;
 import com.chiefglew.dndcharacter.application.items.Item;
 import com.chiefglew.dndcharacter.application.items.Market;
 import com.chiefglew.dndcharacter.application.items.Trade;
-import com.chiefglew.dndcharacter.application.items.Usable;
 import com.chiefglew.dndcharacter.application.items.Valuable;
 import com.chiefglew.dndcharacter.application.items.currency.PlatinumPiece;
 import com.chiefglew.dndcharacter.application.randomGenerators.Dice;
@@ -48,7 +47,7 @@ public class ShortSwordTest {
     @Test
     public void testThatGetDamageReturnsAListOfDiceThatContainsAd6(){
         List<Dice> damage = new ArrayList<Dice>();
-        ItemUseCommmand attackCommmand = shortSword.useItem();
+        ItemUseCommand attackCommmand = shortSword.useItem();
         damage.add(diceFactory.getD6());
         assertEquals(damage,attackCommmand.getDamage());
     }
