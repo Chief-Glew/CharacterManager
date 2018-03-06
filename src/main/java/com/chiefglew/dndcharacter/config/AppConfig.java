@@ -43,13 +43,13 @@ public class AppConfig {
         return smallMarket;
     }
 
-    @Bean
+    @Bean(name = "d6")
     public Dice d6(NumberBetweenUpperAndLowerBoundGenerator numberBetweenUpperAndLowerBoundGenerator){
         return new Dice(6, numberBetweenUpperAndLowerBoundGenerator);
     }
 
-    @Bean
-    public Dice d20(NumberBetweenUpperAndLowerBoundGenerator numberBetweenUpperAndLowerBoundGenerator){
-        return new Dice(20, numberBetweenUpperAndLowerBoundGenerator);
-    }
+//    @Bean(name = "d20")
+//    public Dice d20(NumberBetweenUpperAndLowerBoundGenerator numberBetweenUpperAndLowerBoundGenerator){
+//        return new Dice(20, numberBetweenUpperAndLowerBoundGenerator);
+//    }
 }

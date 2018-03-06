@@ -1,11 +1,11 @@
 package com.chiefglew.dndcharacter.exceptions;
 
-import com.chiefglew.dndcharacter.application.items.Item;
+import com.chiefglew.dndcharacter.application.items.Usable;
 
 public class OutOfStockException extends Throwable {
-    private Item item;
+    private Usable item;
 
-    public OutOfStockException(Item item) {
+    public OutOfStockException(Usable item) {
         super("there are no more available " + item);
         this.item = item;
     }

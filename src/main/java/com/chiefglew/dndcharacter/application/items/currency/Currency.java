@@ -1,12 +1,11 @@
 package com.chiefglew.dndcharacter.application.items.currency;
 
-import com.chiefglew.dndcharacter.application.items.Item;
-import com.chiefglew.dndcharacter.application.items.Valuable;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Currency extends Item implements Valuable {
+import com.chiefglew.dndcharacter.application.items.Valuable;
+
+public abstract class Currency implements Valuable {
 
     private final String symbol;
     private int amount;
