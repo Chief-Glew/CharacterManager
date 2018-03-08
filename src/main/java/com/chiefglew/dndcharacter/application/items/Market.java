@@ -18,6 +18,10 @@ public class Market {
         trade.addItem(shortSword);
         return trade;
     }
+    
+    public void addStock(Item item, int amount) {
+        stock.put(item, amount);
+    }
 
     private Item getFromStock(Class<? extends Item> itemClass) throws OutOfStockException {
         Item returnItem = null;
@@ -27,7 +31,7 @@ public class Market {
                 decreaseStock(item);
                 returnItem = item;
             }
-            }
+        }
         return returnItem;
     }
 
@@ -40,7 +44,5 @@ public class Market {
         stock.put(item, currentStock);
     }
 
-    public void addStock(Item item, int amount) {
-        stock.put(item, amount);
-    }
+
 }

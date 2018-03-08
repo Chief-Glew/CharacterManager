@@ -43,14 +43,4 @@ public class AppConfig {
         smallMarket.addStock(shortSword, 10);
         return smallMarket;
     }
-
-    @Bean(name = "d6")
-    public Dice d6(NumberBetweenUpperAndLowerBoundGenerator numberBetweenUpperAndLowerBoundGenerator){
-        return new Dice(6, numberBetweenUpperAndLowerBoundGenerator);
-    }
-
-//    @Bean(name = "d20")
-//    public Dice d20(NumberBetweenUpperAndLowerBoundGenerator numberBetweenUpperAndLowerBoundGenerator){
-//        return new Dice(20, numberBetweenUpperAndLowerBoundGenerator);
-//    }
 }

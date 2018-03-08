@@ -1,19 +1,9 @@
 package com.chiefglew.dndcharacter.application.randomGenerators;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
 
-@Component
-public class DiceFactory {
+public interface DiceFactory {
 
-    private NumberGenerator numberGenerator;
+	Dice getD6();
 
-    @Autowired
-    public DiceFactory(NumberGenerator numberGenerator){
-        this.numberGenerator = numberGenerator;
-    }
-
-    public Dice getD6() {
-        return new Dice(6, numberGenerator);
-    }
 }

@@ -8,6 +8,7 @@ import com.chiefglew.dndcharacter.application.items.Valuable;
 import com.chiefglew.dndcharacter.application.items.currency.PlatinumPiece;
 import com.chiefglew.dndcharacter.application.randomGenerators.Dice;
 import com.chiefglew.dndcharacter.application.randomGenerators.DiceFactory;
+import com.chiefglew.dndcharacter.application.randomGenerators.FairDiceFactory;
 import com.chiefglew.dndcharacter.config.AppConfig;
 import com.chiefglew.dndcharacter.exceptions.MissingCurrencyException;
 import com.chiefglew.dndcharacter.exceptions.OutOfStockException;
@@ -30,13 +31,13 @@ public class ShortSwordTest {
 
     @Autowired
     private Market smallMarket;
-    @Autowired
     private DiceFactory diceFactory;
 
     private Item shortSword;
 
     @Before
     public void init() throws MissingCurrencyException, OutOfStockException {
+    	diceFactory = FairDiceFactory.getInstance();
         Trade trade = new Trade(new HashSet<Valuable>(), new ArrayList<Item>());
         trade.addValuableToSell(new PlatinumPiece(10));
 
