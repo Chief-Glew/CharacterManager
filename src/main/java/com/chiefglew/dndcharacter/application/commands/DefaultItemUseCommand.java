@@ -2,11 +2,13 @@ package com.chiefglew.dndcharacter.application.commands;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.chiefglew.dndcharacter.application.randomGenerators.Dice;
 
 @Component
+@Scope("prototype")
 public class DefaultItemUseCommand implements ItemUseCommand {
 
 	@Override
