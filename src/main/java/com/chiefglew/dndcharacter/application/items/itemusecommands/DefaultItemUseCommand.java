@@ -1,10 +1,11 @@
-package com.chiefglew.dndcharacter.application.commands;
+package com.chiefglew.dndcharacter.application.items.itemusecommands;
 
 import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.chiefglew.dndcharacter.application.commands.Targetable;
 import com.chiefglew.dndcharacter.application.randomGenerators.Dice;
 
 @Component

@@ -1,4 +1,4 @@
-package com.chiefglew.dndcharacter.application.commands;
+package com.chiefglew.dndcharacter.application.items.itemusecommands;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import com.chiefglew.dndcharacter.application.commands.Targetable;
 import com.chiefglew.dndcharacter.application.randomGenerators.Dice;
 
 @Component

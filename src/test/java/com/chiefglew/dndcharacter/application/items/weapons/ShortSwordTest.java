@@ -12,35 +12,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.chiefglew.dndcharacter.application.commands.ItemUseCommand;
 import com.chiefglew.dndcharacter.application.items.Item;
 import com.chiefglew.dndcharacter.application.items.ItemFactory;
+import com.chiefglew.dndcharacter.application.items.itemusecommands.ItemUseCommand;
 import com.chiefglew.dndcharacter.application.randomGenerators.Dice;
 import com.chiefglew.dndcharacter.application.randomGenerators.DiceFactory;
 import com.chiefglew.dndcharacter.config.AppConfig;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {AppConfig.class})
+@ContextConfiguration(classes = { AppConfig.class })
 public class ShortSwordTest {
 
-    @Autowired
-    private DiceFactory diceFactory;
-    @Autowired
-    private ItemFactory itemFactory;
+	@Autowired
+	private DiceFactory diceFactory;
+	@Autowired
+	private ItemFactory itemFactory;
 
-    private Item shortSword;
+	private Item shortSword;
 
-    @Before
-    public void init() {
-       
-    }
+	@Before
+	public void init() {
+		List<Dice> damage = new ArrayList<>();
+		damage.add(diceFactory.getD6());
+		shortSword = itemFactory.getSimpleWeapon("Short Sword", "Short but lethal", damage);
+	}
 
-    @Test
-    public void testThatGetDamageReturnsAListOfDiceThatContainsAd6(){
-        List<Dice> damage = new ArrayList<Dice>();
-        ItemUseCommand attackCommmand = shortSword.useItem();
-        damage.add(diceFactory.getD6());
-        assertEquals(damage,attackCommmand.getDamage());
-    }
+	@Test
+	public void testThatGetDamageReturnsAListOfDiceThatContainsAd6() {
+		List<Dice> damage = new ArrayList<Dice>();
+		ItemUseCommand attackCommmand = shortSword.useItem();
+		damage.add(diceFactory.getD6());
+		assertEquals(damage, attackCommmand.getDamage());
+	}
 
 }

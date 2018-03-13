@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.chiefglew.dndcharacter.application.commands.ItemUseCommand;
 import com.chiefglew.dndcharacter.application.items.Item;
+import com.chiefglew.dndcharacter.application.items.itemusecommands.ItemUseCommand;
 
 @Component
 @Scope("prototype")

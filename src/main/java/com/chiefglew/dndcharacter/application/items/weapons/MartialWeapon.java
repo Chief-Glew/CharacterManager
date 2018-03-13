@@ -1,5 +1,10 @@
 package com.chiefglew.dndcharacter.application.items.weapons;
 
+import com.chiefglew.dndcharacter.application.items.itemusecommands.ItemUseCommand;
 
-public interface MartialWeapon extends Weapon  {
+public class MartialWeapon extends Weapon  {
+
+	
+	
+	
 }
