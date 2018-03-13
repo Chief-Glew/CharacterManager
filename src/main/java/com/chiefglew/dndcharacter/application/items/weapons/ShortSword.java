@@ -16,6 +16,7 @@ public class ShortSword extends Item implements MartialMeleeWeapon{
 	@Autowired
     public ShortSword(ItemUseCommand itemUseCommand){
 		this.useCommand = itemUseCommand;
+		useCommand.addDamage(dice); // need to do something here... or somewhere else....
     }
 
 	@Override

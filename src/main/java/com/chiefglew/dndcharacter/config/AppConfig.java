@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Configuration
 @ComponentScan(basePackages = {"com.chiefglew.dndcharacter"})
@@ -34,6 +36,11 @@ public class AppConfig {
         currencyStore.addToChain(new PlatinumHandler(0));
         Wallet wallet = new Wallet(currencyStore);
         return wallet;
+    }
+    
+    @Bean
+    public Map<Integer, Dice> diceMap(){
+    	return new ConcurrentHashMap<Integer, Dice>();
     }
 
     @Bean

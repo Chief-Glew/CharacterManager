@@ -1,47 +1,80 @@
 package com.chiefglew.dndcharacter.application.randomGenerators;
 
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@Configurable
 public class FairDiceFactory implements DiceFactory {
 
+	@Autowired
     private NumberGenerator numberGenerator;
+	@Autowired
 	private Map<Integer, Dice> diceMap;
-
-    private FairDiceFactory(NumberGenerator numberGenerator){
-        this.numberGenerator = numberGenerator;
-        this.diceMap = new ConcurrentHashMap<Integer, Dice>();
-    }
     
-    public static DiceFactory getInstance(){
-    	return DiceFactoryInstanceHolder.INSTANCE;
-    }
+    public FairDiceFactory(){}
+    
     
     @Override
-	@Bean
-    public Dice getD6() {
-        return getDiceOrMakeNew(6);
-    }
-    
-    public Dice getDiceOrMakeNew(int NumberOfSides){
+	public Dice getDiceWithNumberOfSides(int NumberOfSides){
     	return diceMap.computeIfAbsent(NumberOfSides, k -> new Dice(NumberOfSides, numberGenerator));
     }
-    
-    private static class DiceFactoryInstanceHolder{
-    	private static final DiceFactory INSTANCE = new FairDiceFactory(getNumberGenerator());
 
-		private static NumberBetweenUpperAndLowerBoundGenerator getNumberGenerator(){
-			NumberBetweenUpperAndLowerBoundGenerator numberBetweenUpperAndLowerBoundGenerator = null;
-			try {
-				numberBetweenUpperAndLowerBoundGenerator = new NumberBetweenUpperAndLowerBoundGenerator(0, 1);
-			} catch (UpperBoundLessThanOrEqualToLowerBoundException e) {
-				e.printStackTrace();
-			}
-			return numberBetweenUpperAndLowerBoundGenerator;
-		}
+
+	@Override
+	@Bean
+	@Qualifier("d2")
+	public Dice getD2() {
+        return getDiceWithNumberOfSides(2);
+
+	}
+
+
+	@Override
+	@Bean
+	@Qualifier("d4")
+	public Dice getD4() {
+        return getDiceWithNumberOfSides(4);
+
+	}
+	
+	@Override
+	@Bean
+	@Qualifier("d6")
+    public Dice getD6() {
+        return getDiceWithNumberOfSides(6);
     }
+
+
+	@Override
+	@Bean
+	@Qualifier("d8")
+	public Dice getD8() {
+        return getDiceWithNumberOfSides(8);
+
+	}
+
+
+	@Override
+	@Bean
+	@Qualifier("d10")
+	public Dice getD10() {
+        return getDiceWithNumberOfSides(10);
+
+	}
+
+
+	@Override
+	@Bean
+	@Qualifier("d20")
+	public Dice getD20() {
+        return getDiceWithNumberOfSides(20);
+
+	}
+    
 }
