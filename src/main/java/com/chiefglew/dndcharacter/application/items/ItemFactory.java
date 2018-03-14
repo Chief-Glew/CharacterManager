@@ -14,10 +14,21 @@ public class ItemFactory {
 	
 	@Autowired
 	private ItemUseCommand itemUseCommand;
+	@Autowired
+	private ItemBuilderHandler itemBuilderHandler;
+	
+	
+	@Autowired
+	public ItemFactory(ItemUseCommand itemUseCommand, ItemBuilderHandler itemBuilderHandler) {
+		this.itemUseCommand = itemUseCommand;
+		this.itemBuilderHandler = itemBuilderHandler;
+	}
+
+
 
 	public SimpleWeapon getSimpleWeapon(String type, String Description, List<Dice> damage) {
 		
-		return ;		
+		return SimpleWeapon.;		
 	}
 
 }
