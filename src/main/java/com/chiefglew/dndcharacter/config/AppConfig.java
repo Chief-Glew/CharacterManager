@@ -26,7 +26,7 @@ import com.chiefglew.dndcharacter.application.randomGenerators.NumberBetweenUppe
 import com.chiefglew.dndcharacter.application.randomGenerators.UpperBoundLessThanOrEqualToLowerBoundException;
 
 @Configuration
-@ComponentScan(basePackages = {"com.chiefglew.dndcharacter"})
+@ComponentScan(basePackages = {"com.chiefglew.dndcharacter.application"})
 public class AppConfig {
 
     @Bean
