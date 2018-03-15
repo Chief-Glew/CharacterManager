@@ -1,21 +1,29 @@
 package com.chiefglew.dndcharacter.config;
 
-import com.chiefglew.dndcharacter.application.items.Item;
-import com.chiefglew.dndcharacter.application.items.Market;
-import com.chiefglew.dndcharacter.application.items.Wallet;
-import com.chiefglew.dndcharacter.application.items.currency.*;
-import com.chiefglew.dndcharacter.application.items.weapons.ShortSword;
-import com.chiefglew.dndcharacter.application.randomGenerators.Dice;
-import com.chiefglew.dndcharacter.application.randomGenerators.NumberBetweenUpperAndLowerBoundGenerator;
-import com.chiefglew.dndcharacter.application.randomGenerators.UpperBoundLessThanOrEqualToLowerBoundException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import com.chiefglew.dndcharacter.application.items.Item;
+import com.chiefglew.dndcharacter.application.items.Market;
+import com.chiefglew.dndcharacter.application.items.Wallet;
+import com.chiefglew.dndcharacter.application.items.currency.CopperStore;
+import com.chiefglew.dndcharacter.application.items.currency.CurrencyStore;
+import com.chiefglew.dndcharacter.application.items.currency.ElectrumHandler;
+import com.chiefglew.dndcharacter.application.items.currency.GoldHandler;
+import com.chiefglew.dndcharacter.application.items.currency.PlatinumHandler;
+import com.chiefglew.dndcharacter.application.items.currency.SilverHandler;
+import com.chiefglew.dndcharacter.application.items.itemfactory.GetItemHandler;
+import com.chiefglew.dndcharacter.application.items.itemfactory.ItemFactory;
+import com.chiefglew.dndcharacter.application.randomGenerators.Dice;
+import com.chiefglew.dndcharacter.application.randomGenerators.NumberBetweenUpperAndLowerBoundGenerator;
+import com.chiefglew.dndcharacter.application.randomGenerators.UpperBoundLessThanOrEqualToLowerBoundException;
 
 @Configuration
 @ComponentScan(basePackages = {"com.chiefglew.dndcharacter"})
@@ -45,9 +53,19 @@ public class AppConfig {
 
     @Bean
     @Scope("prototype")
-    public Market smallMarket(ShortSword shortSword){
+    public Market smallMarket(ItemFactory itemFactory){
         Market smallMarket = new Market(new HashMap<Item, Integer>());
-        smallMarket.addStock(shortSword, 10);
+        smallMarket.addStock(itemFactory.getItem("shortSword"), 10);
         return smallMarket;
+    }
+    
+    @Bean
+    public ItemFactory getItemFactory(List<GetItemHandler> getItemHandlers){
+    	GetItemHandler head = getItemHandlers.get(0);
+    	getItemHandlers.remove(head);
+    	for (GetItemHandler getItemHandler : getItemHandlers) {
+			head.addToChain(getItemHandler);
+		}
+    	return new ItemFactory(head);
     }
 }

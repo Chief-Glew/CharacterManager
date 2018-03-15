@@ -13,7 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.chiefglew.dndcharacter.application.items.Item;
-import com.chiefglew.dndcharacter.application.items.ItemFactory;
+import com.chiefglew.dndcharacter.application.items.itemfactory.ItemFactory;
 import com.chiefglew.dndcharacter.application.items.itemusecommands.ItemUseCommand;
 import com.chiefglew.dndcharacter.application.randomGenerators.Dice;
 import com.chiefglew.dndcharacter.application.randomGenerators.DiceFactory;
@@ -34,7 +34,7 @@ public class ShortSwordTest {
 	public void init() {
 		List<Dice> damage = new ArrayList<>();
 		damage.add(diceFactory.getD6());
-		shortSword = itemFactory.getSimpleWeapon("Short Sword", "Short but lethal", damage);
+		shortSword = itemFactory.getItem("shortSword");
 	}
 
 	@Test

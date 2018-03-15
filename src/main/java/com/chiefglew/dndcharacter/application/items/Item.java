@@ -4,6 +4,10 @@ import com.chiefglew.dndcharacter.application.items.itemusecommands.ItemUseComma
 
 public abstract class Item implements Usable {
 	
+	public Item(ItemUseCommand useCommand) {
+		this.useCommand = useCommand;
+	}
+
 	private ItemUseCommand useCommand;
 	
 	@Override

@@ -21,4 +21,46 @@ public class Dice {
     public int getSides() {
         return sides;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((numberGenerator == null) ? 0 : numberGenerator.hashCode());
+		result = prime * result + sides;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Dice other = (Dice) obj;
+		if (numberGenerator == null) {
+			if (other.numberGenerator != null)
+				return false;
+		} else if (!numberGenerator.equals(other.numberGenerator))
+			return false;
+		if (sides != other.sides)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Dice [sides=");
+		builder.append(sides);
+		builder.append(", numberGenerator=");
+		builder.append(numberGenerator);
+		builder.append("]");
+		return builder.toString();
+	}
+
+
+    
 }
