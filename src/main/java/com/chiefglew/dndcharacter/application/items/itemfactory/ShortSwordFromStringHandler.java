@@ -19,7 +19,7 @@ public class ShortSwordFromStringHandler extends GetItemHandler {
 
 	@Autowired
 	public ShortSwordFromStringHandler(@Qualifier("d6") Dice d6) {
-		super("shortSword");
+		super("ShortSword");
 		this.d6 = d6;
 	}
 

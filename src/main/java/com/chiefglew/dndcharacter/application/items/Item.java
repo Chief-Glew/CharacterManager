@@ -8,7 +8,7 @@ public abstract class Item implements Usable, Valuable {
 		this.useCommand = useCommand;
 	}
 
-	private ItemUseCommand useCommand;
+	protected ItemUseCommand useCommand;
 	
 	@Override
 	public int getNumberOfUses() {
@@ -19,4 +19,6 @@ public abstract class Item implements Usable, Valuable {
 	public ItemUseCommand useItem() {
 		return this.useCommand;
 	}
+
+	public abstract Item duplicate();
 }

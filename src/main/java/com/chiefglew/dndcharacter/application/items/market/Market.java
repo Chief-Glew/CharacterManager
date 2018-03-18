@@ -7,6 +7,7 @@ import com.chiefglew.dndcharacter.application.items.currency.Currency;
 import com.chiefglew.dndcharacter.exceptions.OutOfStockException;
 
 import java.util.List;
+import java.util.Map;
 
 public class Market {
     private GenericStock<String, Item, Integer> stock;
@@ -26,5 +27,9 @@ public class Market {
     public void addStock(Item item, int amount, List<Currency> cost) {
         stock.addItemToStock(item.getValuableName(), item, amount);
         valueHandler.addToChain(new CustomValueHandler(item.getValuableName(), cost));
+    }
+
+    public Map<String, Integer> getAmountOfItemsInStock() {
+        return stock.getAmountOfItemsInStock();
     }
 }

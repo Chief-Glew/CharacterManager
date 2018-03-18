@@ -17,21 +17,36 @@ public class DefaultItemStock implements GenericStock<String,Item, Integer> {
 
     @Override
     public Item withdrawFromStock(String s) throws OutOfStockException {
-        return null;
+        reduceAmountByOne(s);
+        return items.get(s).duplicate();
+    }
+
+    private void reduceAmountByOne(String s) throws OutOfStockException {
+        int amount = amounts.get(s);
+        if (amount==0)
+            throw new OutOfStockException(items.get(s));
+        amount-=1;
+        amounts.put(s,amount);
     }
 
     @Override
     public Integer getAmountOfItem(String s) {
-        return null;
+        return amounts.get(s);
     }
 
     @Override
     public void addItemToStock(String s, Item item, Integer integer) {
-
+        items.put(s,item);
+        amounts.put(s,integer);
     }
 
     @Override
     public Set<String> getItemsInStock() {
-        return null;
+        return items.keySet();
+    }
+
+    @Override
+    public Map<String, Integer> getAmountOfItemsInStock() {
+        return amounts;
     }
 }

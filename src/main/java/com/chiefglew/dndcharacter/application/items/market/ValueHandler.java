@@ -28,7 +28,7 @@ public class ValueHandler extends GenericHandler<ValueHandler> {
         return cost;
     }
 
-    private List<Currency> handleNext(String valuableName) throws CouldNotHandleException {
+    protected List<Currency> handleNext(String valuableName) throws CouldNotHandleException {
         if (!isNextNull()){
             return next.handle(valuableName);
         }

@@ -1,10 +1,14 @@
 package com.chiefglew.dndcharacter.config;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.chiefglew.dndcharacter.application.items.currency.*;
+import com.chiefglew.dndcharacter.application.items.market.DefaultItemStock;
+import com.chiefglew.dndcharacter.application.items.market.DoNothingValueHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,12 +17,6 @@ import org.springframework.context.annotation.Scope;
 import com.chiefglew.dndcharacter.application.items.Item;
 import com.chiefglew.dndcharacter.application.items.market.Market;
 import com.chiefglew.dndcharacter.application.items.Wallet;
-import com.chiefglew.dndcharacter.application.items.currency.CopperStore;
-import com.chiefglew.dndcharacter.application.items.currency.CurrencyStore;
-import com.chiefglew.dndcharacter.application.items.currency.ElectrumHandler;
-import com.chiefglew.dndcharacter.application.items.currency.GoldHandler;
-import com.chiefglew.dndcharacter.application.items.currency.PlatinumHandler;
-import com.chiefglew.dndcharacter.application.items.currency.SilverHandler;
 import com.chiefglew.dndcharacter.application.items.itemfactory.GetItemHandler;
 import com.chiefglew.dndcharacter.application.items.itemfactory.ItemFactory;
 import com.chiefglew.dndcharacter.application.randomGenerators.Dice;
@@ -54,7 +52,9 @@ public class AppConfig {
     @Bean
     @Scope("prototype")
     public Market smallMarket(ItemFactory itemFactory){
-        Market smallMarket = new Market(new HashMap<Item, Integer>(), valueHandler);
+        Market smallMarket = new Market(new DefaultItemStock(new HashMap<>(), new HashMap<>()), new DoNothingValueHandler());
+        List<Currency> cost = new ArrayList<>();
+        cost.add(new GoldPiece(20));
         smallMarket.addStock(itemFactory.getItem("ShortSword"), 10, cost);
         return smallMarket;
     }
