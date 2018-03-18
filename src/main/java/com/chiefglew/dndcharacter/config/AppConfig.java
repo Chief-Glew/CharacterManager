@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 import com.chiefglew.dndcharacter.application.items.Item;
-import com.chiefglew.dndcharacter.application.items.Market;
+import com.chiefglew.dndcharacter.application.items.market.Market;
 import com.chiefglew.dndcharacter.application.items.Wallet;
 import com.chiefglew.dndcharacter.application.items.currency.CopperStore;
 import com.chiefglew.dndcharacter.application.items.currency.CurrencyStore;
@@ -54,8 +54,8 @@ public class AppConfig {
     @Bean
     @Scope("prototype")
     public Market smallMarket(ItemFactory itemFactory){
-        Market smallMarket = new Market(new HashMap<Item, Integer>());
-        smallMarket.addStock(itemFactory.getItem("shortSword"), 10);
+        Market smallMarket = new Market(new HashMap<Item, Integer>(), valueHandler);
+        smallMarket.addStock(itemFactory.getItem("ShortSword"), 10, cost);
         return smallMarket;
     }
     

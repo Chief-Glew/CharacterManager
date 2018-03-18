@@ -2,7 +2,7 @@ package com.chiefglew.dndcharacter.application.items;
 
 import com.chiefglew.dndcharacter.application.items.itemusecommands.ItemUseCommand;
 
-public abstract class Item implements Usable {
+public abstract class Item implements Usable, Valuable {
 	
 	public Item(ItemUseCommand useCommand) {
 		this.useCommand = useCommand;

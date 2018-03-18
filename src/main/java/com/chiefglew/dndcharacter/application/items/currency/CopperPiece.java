@@ -4,4 +4,5 @@ public class CopperPiece extends Currency {
     public CopperPiece(int amount) {
         super("cp", amount);
     }
+
 }
