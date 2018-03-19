@@ -34,7 +34,7 @@ public class ShortSwordTest {
 	public void init() {
 		List<Dice> damage = new ArrayList<>();
 		damage.add(diceFactory.getD6());
-		shortSword = itemFactory.getItem("shortSword");
+		shortSword = itemFactory.getItem("ShortSword");
 	}
 
 	@Test
