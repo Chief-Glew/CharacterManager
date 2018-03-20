@@ -1,21 +1,21 @@
 package com.chiefglew.dndcharacter.application.items.market;
 
-import com.chiefglew.dndcharacter.application.GenericHandler;
-import com.chiefglew.dndcharacter.application.items.currency.Currency;
-import com.chiefglew.dndcharacter.exceptions.CouldNotHandleException;
-
 import java.util.List;
+
+import com.chiefglew.dndcharacter.application.GenericHandler;
+import com.chiefglew.dndcharacter.application.items.Valuable;
+import com.chiefglew.dndcharacter.exceptions.CouldNotHandleException;
 
 public class ValueHandler extends GenericHandler<ValueHandler> {
     private final String valuableName;
-    private final List<Currency> cost;
+    private final List<Valuable> cost;
 
-    public ValueHandler(String valuableName, List<Currency> cost) {
+    public ValueHandler(String valuableName, List<Valuable> cost) {
         this.valuableName = valuableName;
         this.cost = cost;
     }
 
-    public List<Currency> handle(String valuableName) throws CouldNotHandleException {
+    public List<Valuable> handle(String valuableName) throws CouldNotHandleException {
         if (valuableName.equals(this.valuableName)){
             return handlerMethod();
         }
@@ -24,11 +24,11 @@ public class ValueHandler extends GenericHandler<ValueHandler> {
         }
     }
 
-    protected List<Currency> handlerMethod() {
+    protected List<Valuable> handlerMethod() {
         return cost;
     }
 
-    protected List<Currency> handleNext(String valuableName) throws CouldNotHandleException {
+    protected List<Valuable> handleNext(String valuableName) throws CouldNotHandleException {
         if (!isNextNull()){
             return next.handle(valuableName);
         }

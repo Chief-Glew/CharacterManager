@@ -1,9 +1,9 @@
 package com.chiefglew.dndcharacter.application.items.market;
 
-import com.chiefglew.dndcharacter.application.items.currency.Currency;
-import com.chiefglew.dndcharacter.exceptions.CouldNotHandleException;
-
 import java.util.List;
+
+import com.chiefglew.dndcharacter.application.items.Valuable;
+import com.chiefglew.dndcharacter.exceptions.CouldNotHandleException;
 
 public class DoNothingValueHandler extends ValueHandler {
 
@@ -12,7 +12,7 @@ public class DoNothingValueHandler extends ValueHandler {
     }
 
     @Override
-    public List<Currency> handle(String valuableName) throws CouldNotHandleException {
+    public List<Valuable> handle(String valuableName) throws CouldNotHandleException {
         return handleNext(valuableName);
     }
 

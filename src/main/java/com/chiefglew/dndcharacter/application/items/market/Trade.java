@@ -3,11 +3,9 @@ package com.chiefglew.dndcharacter.application.items.market;
 import com.chiefglew.dndcharacter.application.items.Item;
 import com.chiefglew.dndcharacter.application.items.Valuable;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class Trade {
+public class Trade implements GenericTrade<Item>{
     private Set<Valuable> valuables;
     private Item item;
 
@@ -20,19 +18,23 @@ public class Trade {
         this.valuables = valuables;
     }
 
-    public void addValuableToSell(Valuable valuable) {
+    @Override
+	public void addValuableToSell(Valuable valuable) {
         this.valuables.add(valuable);
     }
 
-    public void removeValuable(Valuable valuable){
+    @Override
+	public void removeValuable(Valuable valuable){
         this.valuables.remove(valuable);
     }
 
-    public Item getItem() {
+    @Override
+	public Item getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
+    @Override
+	public void setItem(Item item) {
         this.item = item;
     }
 }

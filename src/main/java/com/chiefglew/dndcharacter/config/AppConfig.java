@@ -15,7 +15,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 import com.chiefglew.dndcharacter.application.items.Item;
+import com.chiefglew.dndcharacter.application.items.Valuable;
 import com.chiefglew.dndcharacter.application.items.market.Market;
+import com.chiefglew.dndcharacter.application.items.market.SellsGenericValuables;
 import com.chiefglew.dndcharacter.application.items.Wallet;
 import com.chiefglew.dndcharacter.application.items.itemfactory.GetItemHandler;
 import com.chiefglew.dndcharacter.application.items.itemfactory.ItemFactory;
@@ -51,9 +53,9 @@ public class AppConfig {
 
     @Bean
     @Scope("prototype")
-    public Market smallMarket(ItemFactory itemFactory){
-        Market smallMarket = new Market(new DefaultItemStock(new HashMap<>(), new HashMap<>()), new DoNothingValueHandler());
-        List<Currency> cost = new ArrayList<>();
+    public SellsGenericValuables<Item, Integer> smallMarket(ItemFactory itemFactory){
+        SellsGenericValuables<Item, Integer> smallMarket = new Market(new DefaultItemStock(new HashMap<>(), new HashMap<>()), new DoNothingValueHandler());
+        List<Valuable> cost = new ArrayList<>();
         cost.add(new GoldPiece(20));
         smallMarket.addStock(itemFactory.getItem("ShortSword"), 10, cost);
         return smallMarket;

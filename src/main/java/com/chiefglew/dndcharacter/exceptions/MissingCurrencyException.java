@@ -6,7 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MissingCurrencyException extends Throwable {
-    private List<Currency> currencies;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Currency> currencies;
 
     public MissingCurrencyException(List<Currency> currencies) {
         super("The following currencies could not be handled " + currencies);
