@@ -1,5 +1,6 @@
 package com.chiefglew.dndcharacter.application.items.market;
 
+import com.chiefglew.dndcharacter.application.items.Item;
 import com.chiefglew.dndcharacter.application.items.Valuable;
 import com.chiefglew.dndcharacter.application.items.currency.Currency;
 import com.chiefglew.dndcharacter.application.items.currency.GoldPiece;
@@ -27,6 +28,7 @@ public class MarketTest {
     @Autowired
     private ItemFactory itemFactory;
     private Trade trade;
+    private Item shortSword;
     private String itemKey = "ShortSword";
 
     @Before
@@ -34,7 +36,8 @@ public class MarketTest {
         smallMarket = new Market(new DefaultItemStock(new HashMap<>(), new HashMap<>()), new DoNothingValueHandler());
         List<Currency> cost = new ArrayList<>();
         cost.add(new GoldPiece(10));
-        smallMarket.addStock(itemFactory.getItem("ShortSword"), 10, cost);
+        shortSword = itemFactory.getItem("ShortSword");
+		smallMarket.addStock(shortSword, 10, cost);
         trade = new Trade(new HashSet<Valuable>());
         trade.addValuableToSell(new PlatinumPiece(10));
     }
@@ -45,6 +48,14 @@ public class MarketTest {
         Map<String, Integer> stock = smallMarket.getAmountOfItemsInStock();
 
         assertEquals(Integer.valueOf(9),stock.get(itemKey));
+    }
+    
+    @Test
+    public void testThatAppraiseReturnsAMapWithGoldPieceTenWhenGivenShortSword(){
+    	Map<String, Integer> cost = smallMarket.appraise(shortSword);
+    	Map<String, Integer> expectedCost  = new HashMap<String, Integer>();
+    	expectedCost.put("GoldPeice", 10);
+    	assertEquals(expectedCost, cost);
     }
 
 
