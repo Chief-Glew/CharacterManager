@@ -33,12 +33,14 @@ public class MarketTest {
     private GenericTrade<Item> trade;
     private Item shortSword;
     private String itemKey = "ShortSword";
-
+    @Autowired
+    private CurrencyFactory currencyFactory;
+    
     @Before
     public void init() throws OutOfStockException {
         smallMarket = new Market(new DefaultItemStock(new HashMap<>(), new HashMap<>()), new DoNothingValueHandler());
         List<Valuable> cost = new ArrayList<>();
-        cost.add(new GoldPiece(10));
+        cost.addAll( currencyFactory.getGoldPieces(10));
         shortSword = itemFactory.getItem("ShortSword");
 		smallMarket.addStock(shortSword, 10, cost);
         trade = new Trade(new HashSet<Valuable>());
