@@ -7,6 +7,7 @@ import com.chiefglew.dndcharacter.exceptions.notEnoughFundsException;
 import java.util.Arrays;
 import java.util.List;
 
+@Deprecated
 public abstract class CurrencyStore extends GenericHandler<CurrencyStore>{
     private String symbol;
     private int divisor;

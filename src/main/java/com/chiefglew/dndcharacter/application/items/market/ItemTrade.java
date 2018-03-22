@@ -5,27 +5,22 @@ import com.chiefglew.dndcharacter.application.items.Valuable;
 
 import java.util.Set;
 
-public class Trade implements GenericTrade<Item>{
-    private Set<Valuable> valuables;
+public class ItemTrade implements GenericTrade<Item, Valuable>{
+    private Inventory<? extends Item> selling;
     private Item item;
 
-    public Trade(Set<Valuable> valuables, Item item) {
-        this.valuables = valuables;
-        this.item = item;
-    }
-
-    public Trade(Set<Valuable> valuables) {
-        this.valuables = valuables;
+    public ItemTrade(Inventory<? extends Item> selling) {
+        this.selling = selling;
     }
 
     @Override
 	public void addValuableToSell(Valuable valuable) {
-        this.valuables.add(valuable);
+        this.selling.add(valuable);
     }
 
     @Override
 	public void removeValuable(Valuable valuable){
-        this.valuables.remove(valuable);
+        this.selling.remove(valuable);
     }
 
     @Override
@@ -37,4 +32,10 @@ public class Trade implements GenericTrade<Item>{
 	public void setItem(Item item) {
         this.item = item;
     }
+
+	@Override
+	public void addValuablesToSell(Inventory<? extends Valuable> items) {
+		// TODO Auto-generated method stub
+		
+	}
 }

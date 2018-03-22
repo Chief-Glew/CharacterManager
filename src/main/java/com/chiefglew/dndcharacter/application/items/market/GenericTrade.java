@@ -1,15 +1,15 @@
 package com.chiefglew.dndcharacter.application.items.market;
 
-import com.chiefglew.dndcharacter.application.items.Valuable;
+public interface GenericTrade<ItemBought, ValuableSold> {
 
-public interface GenericTrade<Item> {
+	void setItem(ItemBought item);
 
-	void setItem(Item item);
+	ItemBought getItem();
 
-	Item getItem();
+	void removeValuable(ValuableSold valuableSold);
 
-	void removeValuable(Valuable valuable);
+	void addValuableToSell(ValuableSold valuableSold);
 
-	void addValuableToSell(Valuable valuable);
+	void addValuablesToSell(Inventory<? extends ValuableSold> valuablesSold);
 
 }

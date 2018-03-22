@@ -4,11 +4,11 @@ import com.chiefglew.dndcharacter.application.items.itemusecommands.ItemUseComma
 
 public abstract class Item implements Usable, Valuable {
 	
+	protected ItemUseCommand useCommand;
+	
 	public Item(ItemUseCommand useCommand) {
 		this.useCommand = useCommand;
 	}
-
-	protected ItemUseCommand useCommand;
 	
 	@Override
 	public int getNumberOfUses() {

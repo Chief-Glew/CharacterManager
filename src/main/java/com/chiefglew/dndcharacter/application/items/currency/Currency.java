@@ -1,23 +1,19 @@
 package com.chiefglew.dndcharacter.application.items.currency;
 
-import com.chiefglew.dndcharacter.application.items.Valuable;
+import com.chiefglew.dndcharacter.application.items.Item;
+import com.chiefglew.dndcharacter.application.items.itemusecommands.ItemUseCommand;
 
-public abstract class Currency implements Valuable {
+public abstract class Currency extends Item {
 
     private final String symbol;
-    private int amount;
 
-    public Currency(String symbol, int amount) {
+    public Currency(String symbol, ItemUseCommand useCommand) {
+    	super(useCommand);
         this.symbol = symbol;
-        this.amount = amount;
     }
 
-    public String getSymbol() {
+	public String getSymbol() {
         return symbol;
-    }
-
-    public int getAmount() {
-        return amount;
     }
 
 }

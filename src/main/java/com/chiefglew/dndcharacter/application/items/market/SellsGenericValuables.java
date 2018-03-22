@@ -1,6 +1,5 @@
 package com.chiefglew.dndcharacter.application.items.market;
 
-import java.util.List;
 import java.util.Map;
 
 import com.chiefglew.dndcharacter.application.items.Valuable;
@@ -12,7 +11,7 @@ public interface SellsGenericValuables<Item extends Valuable, ItemMeasurement> {
 
 	Map<String, ItemMeasurement> getAmountOfItemsInStock();
 
-	void addStock(Item item, ItemMeasurement amount, List<Valuable> cost);
+	void addStock(Item item, ItemMeasurement amount, Inventory<Valuable> valuables);
 
 	GenericTrade<Item> buyItem(String itemKey, GenericTrade<Item> trade) throws OutOfStockException;
 
