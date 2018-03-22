@@ -1,26 +1,23 @@
 package com.chiefglew.dndcharacter.application.items.market;
 
 import com.chiefglew.dndcharacter.application.items.Item;
-import com.chiefglew.dndcharacter.application.items.Valuable;
 
-import java.util.Set;
-
-public class ItemTrade implements GenericTrade<Item, Valuable>{
-    private Inventory<? extends Item> selling;
+public class ItemTrade implements GenericTrade<Item, Item>{
+    private Inventory<Item> selling;
     private Item item;
 
-    public ItemTrade(Inventory<? extends Item> selling) {
+    public ItemTrade(Inventory<Item> selling) {
         this.selling = selling;
     }
 
     @Override
-	public void addValuableToSell(Valuable valuable) {
-        this.selling.add(valuable);
+	public void addValuableToSell(Item item) {
+        this.selling.add(item);
     }
 
     @Override
-	public void removeValuable(Valuable valuable){
-        this.selling.remove(valuable);
+	public void removeValuable(Item item){
+        this.selling.remove(item);
     }
 
     @Override
@@ -34,8 +31,7 @@ public class ItemTrade implements GenericTrade<Item, Valuable>{
     }
 
 	@Override
-	public void addValuablesToSell(Inventory<? extends Valuable> items) {
-		// TODO Auto-generated method stub
-		
+	public void addValuablesToSell(Inventory<? extends Item> items) {
+		this.selling.addAll(items);
 	}
 }

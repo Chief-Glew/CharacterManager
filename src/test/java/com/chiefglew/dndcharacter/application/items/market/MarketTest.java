@@ -3,7 +3,6 @@ package com.chiefglew.dndcharacter.application.items.market;
 import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 import org.junit.Before;
@@ -27,7 +26,7 @@ public class MarketTest {
     private SellsGenericValuables<Item, Integer> emptyMarket;
     @Autowired
     private ItemFactory itemFactory;
-    private GenericTrade<Item, Valuable> trade;
+    private GenericTrade<Item, Item> trade;
     private Item shortSword;
     private String itemKey = "ShortSword";
     @Autowired
@@ -36,11 +35,11 @@ public class MarketTest {
     
     @Before
     public void init() throws OutOfStockException {
-        valuables = new DefaultInventory<Valuable>();
-        valuables.addall(currencyFactory.getGoldPieces(10));
+        valuables = new DefaultInventory<>();
+        valuables.addAll(currencyFactory.getGoldPieces(10));
         shortSword = itemFactory.getItem("ShortSword");
 		emptyMarket.addStock(shortSword, 10, valuables);
-        trade = new ItemTrade(new DefaultInventory<Item>(););
+        trade = new ItemTrade(new DefaultInventory<>());
         trade.addValuablesToSell(currencyFactory.getPlatinumPeices(10));
     }
 
@@ -56,7 +55,7 @@ public class MarketTest {
     public void testThatAppraiseReturnsAMapWithGoldPieceTenWhenGivenShortSword(){
     	Map<String, Integer> cost = emptyMarket.appraise(shortSword);
     	Map<String, Integer> expectedCost  = new HashMap<String, Integer>();
-    	expectedCost.put("GoldPeice", 10);
+    	expectedCost.put("GoldPiece", 10);
     	assertEquals(expectedCost, cost);
     }
 
