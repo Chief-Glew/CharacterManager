@@ -30,17 +30,7 @@ public class AppConfig {
         return new NumberBetweenUpperAndLowerBoundGenerator(0,1);
     }
 
-//    @Bean
-//    @Scope("prototype")
-//    public Wallet wallet(){
-//        CurrencyStore currencyStore = new CopperStore(0);
-//        currencyStore.addToChain(new SilverHandler(0));
-//        currencyStore.addToChain(new ElectrumHandler(0));
-//        currencyStore.addToChain(new GoldHandler(0));
-//        currencyStore.addToChain(new PlatinumHandler(0));
-//        Wallet wallet = new Wallet(currencyStore);
-//        return wallet;
-//    }
+
     
     @Bean
     public Map<Integer, Dice> diceMap(){
@@ -60,7 +50,9 @@ public class AppConfig {
     @Bean
     @Scope("prototype")
     public SellsGenericValuables<Item, Integer> emptyMarket(){
-    	return new Market(new DefaultItemStock(new HashMap<>(), new HashMap<>()), new DoNothingValueHandler<Integer>());
+    	return new Market(
+    			new DefaultItemStock(new HashMap<>(), new HashMap<>()),
+    			new DoNothingValueHandler<Integer>());
     }
     
     @Bean
@@ -73,3 +65,15 @@ public class AppConfig {
     	return new ItemFactory(head);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

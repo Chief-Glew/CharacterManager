@@ -40,7 +40,7 @@ public class MarketTest {
         valuables.put("GoldPiece", 10);
         shortSword = itemFactory.getItem("ShortSword");
 		emptyMarket.addStock(shortSword, 10, valuables);
-        trade = new ItemTrade(new HashMap<>());
+        trade = new ItemTrade(new HashMap<>()); //TODO look up spring @Transactional
         trade.addValuablesToSell(currencyFactory.getGoldPieces(10));
     }
 

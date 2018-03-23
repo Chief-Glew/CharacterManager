@@ -21,7 +21,7 @@ public class Market extends GenericMarket<Item, Integer> {
 		try {
 			cost = appraise(itemKey);
 		} catch (CouldNotHandleException e) {
-			e.printStackTrace();
+			e.printStackTrace(); //TODO log this
 			throw new OutOfStockException(itemKey);
 		}
 		
