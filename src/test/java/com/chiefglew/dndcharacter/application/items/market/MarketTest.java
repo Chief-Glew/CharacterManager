@@ -58,6 +58,8 @@ public class MarketTest {
     	expectedCost.put("GoldPiece", 10);
     	assertEquals(expectedCost, cost);
     }
+    
+    
 
 
 }
