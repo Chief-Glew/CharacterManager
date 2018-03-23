@@ -14,4 +14,6 @@ public interface GenericTrade<ItemBought, ValuableSold> {
 
 	void addValuablesToSell(Map<? extends ValuableSold, Integer> valuablesSold);
 
+	Map<ValuableSold, Integer> getSelling();
+
 }

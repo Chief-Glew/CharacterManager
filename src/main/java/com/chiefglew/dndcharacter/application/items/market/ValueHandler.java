@@ -3,7 +3,6 @@ package com.chiefglew.dndcharacter.application.items.market;
 import java.util.Map;
 
 import com.chiefglew.dndcharacter.application.GenericHandler;
-import com.chiefglew.dndcharacter.application.items.Valuable;
 import com.chiefglew.dndcharacter.exceptions.CouldNotHandleException;
 
 public class ValueHandler<ValuableAmount> extends GenericHandler<ValueHandler<ValuableAmount>> {

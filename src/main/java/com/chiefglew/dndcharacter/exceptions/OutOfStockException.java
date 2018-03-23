@@ -13,4 +13,8 @@ public class OutOfStockException extends Throwable {
         super("there are no more available " + item);
         this.item = item;
     }
+
+	public OutOfStockException(String itemKey) {
+		super("there are no more available " + itemKey);
+	}
 }

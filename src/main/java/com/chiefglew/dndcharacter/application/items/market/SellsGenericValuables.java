@@ -16,4 +16,6 @@ public interface SellsGenericValuables<Item extends Valuable, ItemMeasurement> {
 
 	GenericTrade<Item, Item> buyItem(String itemKey, GenericTrade<Item, Item> trade) throws OutOfStockException;
 
+	Map<String, ItemMeasurement> appraise(String item) throws CouldNotHandleException;
+
 }

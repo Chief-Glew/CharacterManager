@@ -1,6 +1,7 @@
 package com.chiefglew.dndcharacter.application.items.market;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +41,7 @@ public class MarketTest {
         shortSword = itemFactory.getItem("ShortSword");
 		emptyMarket.addStock(shortSword, 10, valuables);
         trade = new ItemTrade(new HashMap<>());
-        trade.addValuablesToSell(currencyFactory.getPlatinumPieces(10));
+        trade.addValuablesToSell(currencyFactory.getGoldPieces(10));
     }
 
     @Test
@@ -57,6 +58,23 @@ public class MarketTest {
     	Map<String, Integer> expectedCost  = new HashMap<String, Integer>();
     	expectedCost.put("GoldPiece", 10);
     	assertEquals(expectedCost, cost);
+    }
+    
+    @Test
+    public void testThatTheMarketStockContainsTenGoldPiecesAfterAShortSwordIsBought() throws OutOfStockException{
+    	emptyMarket.buyItem("ShortSword", trade);
+    	Map<String, Integer> stock = emptyMarket.getAmountOfItemsInStock();
+    	assertEquals(Integer.valueOf(10), stock.get("GoldPiece"));
+    }
+    
+    @Test
+    public void testThatTradeIsUnchangedWhenItDoesntContainTheRightTypeAndAmountOfThingsToSell() throws OutOfStockException{
+    	GenericTrade<Item, Item> trade = new ItemTrade(new HashMap<>());
+        trade.addValuablesToSell(currencyFactory.getPlatinumPieces(10));
+        GenericTrade<Item, Item> expectedTrade = new ItemTrade(new HashMap<>());
+        trade.addValuablesToSell(currencyFactory.getPlatinumPieces(10));
+        emptyMarket.buyItem("ShortSword", trade);
+        assertEquals(expectedTrade, trade);
     }
     
     

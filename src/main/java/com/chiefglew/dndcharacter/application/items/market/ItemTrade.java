@@ -43,4 +43,9 @@ public class ItemTrade implements GenericTrade<Item, Item>{
 	public void addValuablesToSell(Map<? extends Item, Integer> items) {
 		this.selling.putAll(items);
 	}
+
+	@Override
+	public Map<Item, Integer> getSelling() {
+		return selling;
+	}
 }
