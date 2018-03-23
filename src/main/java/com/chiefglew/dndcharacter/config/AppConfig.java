@@ -1,26 +1,22 @@
 package com.chiefglew.dndcharacter.config;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.chiefglew.dndcharacter.application.items.currency.*;
-import com.chiefglew.dndcharacter.application.items.market.DefaultItemStock;
-import com.chiefglew.dndcharacter.application.items.market.DoNothingValueHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+import com.chiefglew.dndcharacter.application.items.DefaultItemStock;
 import com.chiefglew.dndcharacter.application.items.Item;
-import com.chiefglew.dndcharacter.application.items.Valuable;
-import com.chiefglew.dndcharacter.application.items.market.Market;
-import com.chiefglew.dndcharacter.application.items.market.SellsGenericValuables;
-import com.chiefglew.dndcharacter.application.items.Wallet;
 import com.chiefglew.dndcharacter.application.items.itemfactory.GetItemHandler;
 import com.chiefglew.dndcharacter.application.items.itemfactory.ItemFactory;
+import com.chiefglew.dndcharacter.application.items.market.DoNothingValueHandler;
+import com.chiefglew.dndcharacter.application.items.market.Market;
+import com.chiefglew.dndcharacter.application.items.market.SellsGenericValuables;
 import com.chiefglew.dndcharacter.application.randomGenerators.Dice;
 import com.chiefglew.dndcharacter.application.randomGenerators.NumberBetweenUpperAndLowerBoundGenerator;
 import com.chiefglew.dndcharacter.application.randomGenerators.UpperBoundLessThanOrEqualToLowerBoundException;
@@ -64,7 +60,7 @@ public class AppConfig {
     @Bean
     @Scope("prototype")
     public SellsGenericValuables<Item, Integer> emptyMarket(){
-    	return new Market(new DefaultItemStock(new HashMap<>(), new HashMap<>()), new DoNothingValueHandler());
+    	return new Market(new DefaultItemStock(new HashMap<>(), new HashMap<>()), new DoNothingValueHandler<Integer>());
     }
     
     @Bean

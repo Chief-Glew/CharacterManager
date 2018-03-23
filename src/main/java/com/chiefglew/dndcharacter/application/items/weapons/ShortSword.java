@@ -6,11 +6,11 @@ import com.chiefglew.dndcharacter.application.items.itemusecommands.ItemUseComma
 public class ShortSword extends MartialWeapon{
 
 	public ShortSword(ItemUseCommand useCommand) {
-		super(useCommand);
+		super("ShortSword", useCommand);
 	}
 
 	@Override
-	public Item duplicate() {
+	protected Item duplicate() {
 		return new ShortSword(useCommand);
 	}
 

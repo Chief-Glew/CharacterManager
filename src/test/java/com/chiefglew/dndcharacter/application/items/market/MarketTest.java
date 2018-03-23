@@ -13,9 +13,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.chiefglew.dndcharacter.application.items.Item;
-import com.chiefglew.dndcharacter.application.items.Valuable;
+import com.chiefglew.dndcharacter.application.items.currency.CurrencyFactory;
 import com.chiefglew.dndcharacter.application.items.itemfactory.ItemFactory;
 import com.chiefglew.dndcharacter.config.AppConfig;
+import com.chiefglew.dndcharacter.exceptions.CouldNotHandleException;
 import com.chiefglew.dndcharacter.exceptions.OutOfStockException;
 
 @RunWith(SpringRunner.class)
@@ -28,19 +29,18 @@ public class MarketTest {
     private ItemFactory itemFactory;
     private GenericTrade<Item, Item> trade;
     private Item shortSword;
-    private String itemKey = "ShortSword";
     @Autowired
     private CurrencyFactory currencyFactory;
-    private Inventory<Valuable> valuables;
+    private Map<String, Integer> valuables;
     
     @Before
     public void init() throws OutOfStockException {
-        valuables = new DefaultInventory<>();
-        valuables.addAll(currencyFactory.getGoldPieces(10));
+        valuables = new HashMap<>();
+        valuables.put("GoldPiece", 10);
         shortSword = itemFactory.getItem("ShortSword");
 		emptyMarket.addStock(shortSword, 10, valuables);
-        trade = new ItemTrade(new DefaultInventory<>());
-        trade.addValuablesToSell(currencyFactory.getPlatinumPeices(10));
+        trade = new ItemTrade(new HashMap<>());
+        trade.addValuablesToSell(currencyFactory.getPlatinumPieces(10));
     }
 
     @Test
@@ -48,11 +48,11 @@ public class MarketTest {
         emptyMarket.buyItem("ShortSword", trade);
         Map<String, Integer> stock = emptyMarket.getAmountOfItemsInStock();
 
-        assertEquals(Integer.valueOf(9),stock.get(itemKey));
+        assertEquals(Integer.valueOf(9),stock.get("ShortSword"));
     }
     
     @Test
-    public void testThatAppraiseReturnsAMapWithGoldPieceTenWhenGivenShortSword(){
+    public void testThatAppraiseReturnsAMapWithGoldPieceTenWhenGivenShortSword() throws CouldNotHandleException{
     	Map<String, Integer> cost = emptyMarket.appraise(shortSword);
     	Map<String, Integer> expectedCost  = new HashMap<String, Integer>();
     	expectedCost.put("GoldPiece", 10);

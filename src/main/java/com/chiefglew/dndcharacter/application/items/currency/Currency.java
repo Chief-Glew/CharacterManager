@@ -7,8 +7,8 @@ public abstract class Currency extends Item {
 
     private final String symbol;
 
-    public Currency(String symbol, ItemUseCommand useCommand) {
-    	super(useCommand);
+    public Currency(String name, String symbol, ItemUseCommand useCommand) {
+    	super(name, useCommand);
         this.symbol = symbol;
     }
 

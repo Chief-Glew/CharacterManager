@@ -4,9 +4,10 @@ import com.chiefglew.dndcharacter.application.items.itemusecommands.ItemUseComma
 
 public abstract class MartialWeapon extends Weapon  {
 
-	public MartialWeapon(ItemUseCommand useCommand) {
-		super(useCommand);
+	public MartialWeapon(String name, ItemUseCommand useCommand) {
+		super(name, useCommand);
 	}
+
 
 	
 	

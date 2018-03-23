@@ -1,23 +1,32 @@
 package com.chiefglew.dndcharacter.application.items.market;
 
+import java.util.Map;
+
 import com.chiefglew.dndcharacter.application.items.Item;
 
 public class ItemTrade implements GenericTrade<Item, Item>{
-    private Inventory<Item> selling;
+    private Map<Item, Integer> selling;
     private Item item;
 
-    public ItemTrade(Inventory<Item> selling) {
+    public ItemTrade(Map<Item, Integer> selling) {
         this.selling = selling;
     }
 
     @Override
 	public void addValuableToSell(Item item) {
-        this.selling.add(item);
+    	int current = selling.getOrDefault(item, 0);
+        selling.put(item, current+1);
     }
 
     @Override
 	public void removeValuable(Item item){
-        this.selling.remove(item);
+    	if(selling.containsKey(item)){
+    		int current = selling.getOrDefault(item, 0);
+    		selling.put(item, current-1);
+    		if (current <= 0){
+    			selling.remove(item);
+    		}
+    	}
     }
 
     @Override
@@ -31,7 +40,7 @@ public class ItemTrade implements GenericTrade<Item, Item>{
     }
 
 	@Override
-	public void addValuablesToSell(Inventory<? extends Item> items) {
-		this.selling.addAll(items);
+	public void addValuablesToSell(Map<? extends Item, Integer> items) {
+		this.selling.putAll(items);
 	}
 }

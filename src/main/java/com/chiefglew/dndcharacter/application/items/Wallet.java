@@ -1,7 +1,7 @@
 package com.chiefglew.dndcharacter.application.items;
 
 import com.chiefglew.dndcharacter.application.items.currency.Currency;
-import com.chiefglew.dndcharacter.application.items.currency.CurrencyStore;
+import com.chiefglew.dndcharacter.application.items.currency.currencyhandlers.CurrencyStore;
 import com.chiefglew.dndcharacter.exceptions.MissingCurrencyException;
 
 public class Wallet {

@@ -1,6 +1,7 @@
-package com.chiefglew.dndcharacter.application.items.currency;
+package com.chiefglew.dndcharacter.application.items.currency.currencyhandlers;
 
 import com.chiefglew.dndcharacter.application.GenericHandler;
+import com.chiefglew.dndcharacter.application.items.currency.Currency;
 import com.chiefglew.dndcharacter.exceptions.MissingCurrencyException;
 import com.chiefglew.dndcharacter.exceptions.notEnoughFundsException;
 

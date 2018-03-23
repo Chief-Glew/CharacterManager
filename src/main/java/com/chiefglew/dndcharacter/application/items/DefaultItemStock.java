@@ -1,6 +1,6 @@
-package com.chiefglew.dndcharacter.application.items.market;
+package com.chiefglew.dndcharacter.application.items;
 
-import com.chiefglew.dndcharacter.application.items.Item;
+import com.chiefglew.dndcharacter.application.items.market.GenericStock;
 import com.chiefglew.dndcharacter.exceptions.OutOfStockException;
 
 import java.util.Map;

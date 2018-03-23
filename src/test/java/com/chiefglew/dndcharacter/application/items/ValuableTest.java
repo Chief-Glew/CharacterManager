@@ -9,7 +9,7 @@ public class ValuableTest {
 
     @Test
     public void testThatTheValuableNameOfAPlatinumPieceIsPlatinumPiece(){
-        Valuable platinumPiece = new PlatinumPiece(10);
+        Valuable platinumPiece = new PlatinumPiece();
         assertEquals("PlatinumPiece",platinumPiece.getValuableName());
     }
 }

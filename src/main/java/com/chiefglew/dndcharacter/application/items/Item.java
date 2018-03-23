@@ -5,8 +5,10 @@ import com.chiefglew.dndcharacter.application.items.itemusecommands.ItemUseComma
 public abstract class Item implements Usable, Valuable {
 	
 	protected ItemUseCommand useCommand;
+	private String name;
 	
-	public Item(ItemUseCommand useCommand) {
+	public Item(String name, ItemUseCommand useCommand) {
+		this.name = name;
 		this.useCommand = useCommand;
 	}
 	
@@ -20,5 +22,9 @@ public abstract class Item implements Usable, Valuable {
 		return this.useCommand;
 	}
 
-	public abstract Item duplicate();
+	protected abstract Item duplicate();
+
+	public String getName() {
+		return name;
+	}
 }

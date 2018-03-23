@@ -1,10 +1,9 @@
 package com.chiefglew.dndcharacter.application.items.market;
 
-import com.chiefglew.dndcharacter.application.items.Valuable;
-import java.util.List;
+import java.util.Map;
 
-public class CustomValueHandler extends ValueHandler {
-    public CustomValueHandler(String valuableName, List<Valuable> cost) {
+public class CustomValueHandler<ValuableAmount> extends ValueHandler<ValuableAmount> {
+    public CustomValueHandler(String valuableName, Map<String, ValuableAmount> cost) {
         super(valuableName, cost);
     }
 }

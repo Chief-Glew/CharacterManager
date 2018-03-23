@@ -1,5 +1,7 @@
 package com.chiefglew.dndcharacter.application.items.market;
 
+import java.util.Map;
+
 public interface GenericTrade<ItemBought, ValuableSold> {
 
 	void setItem(ItemBought item);
@@ -10,6 +12,6 @@ public interface GenericTrade<ItemBought, ValuableSold> {
 
 	void addValuableToSell(ValuableSold valuableSold);
 
-	void addValuablesToSell(Inventory<? extends ValuableSold> valuablesSold);
+	void addValuablesToSell(Map<? extends ValuableSold, Integer> valuablesSold);
 
 }
