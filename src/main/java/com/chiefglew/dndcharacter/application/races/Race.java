@@ -63,6 +63,31 @@ public abstract class Race implements ThingWithStats{
 		public RaceBuilder(){
     		this.stats = new HashMap<Stat, Integer>();
     	}
+    	//str,  dex,  con,  intel,  wis,  cha
+    	public RaceBuilder setStrength(int value){
+    		stats.put(statFactory.getStrength(), value);
+    		return this; 
+    	}
+    	
+    	public RaceBuilder setDexterity(int value){
+    		stats.put(statFactory.getDexterity(), value);
+    		return this; 
+    	}
+    	
+    	public RaceBuilder setStrength(int value){
+    		stats.put(statFactory.getStrength(), value);
+    		return this; 
+    	}
+    	
+    	public RaceBuilder setStrength(int value){
+    		stats.put(statFactory.getStrength(), value);
+    		return this; 
+    	}
+    	
+    	public RaceBuilder setStrength(int value){
+    		stats.put(statFactory.getStrength(), value);
+    		return this; 
+    	}
     	
     	public RaceBuilder setStrength(int value){
     		stats.put(statFactory.getStrength(), value);

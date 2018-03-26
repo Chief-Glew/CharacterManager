@@ -27,4 +27,9 @@ public class StatFactory {
 		return null;
 	}
 
+	public Stat getDexterity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
