@@ -15,7 +15,7 @@ public class SkillFactory {
         this.skills = skills;
     }
 
-    private Skill getSkill(Class<? extends Skill> skillClass) {
+    protected Skill getSkill(Class<? extends Skill> skillClass) {
         Skill returnValue = null;
         for (Skill skill: skills){
             if (skill.getClass() == skillClass){

@@ -9,4 +9,8 @@ public class Elf extends Race {
     protected Elf(Set<Stat> stats, Set<Skill> skills, int proficiencyModifier) {
         super(stats, skills, proficiencyModifier);
     }
+    
+    public static class ElfBuiler extends Race.RaceBuilder{
+    	
+    }
 }

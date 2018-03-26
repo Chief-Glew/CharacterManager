@@ -28,6 +28,7 @@ public class ElfTest {
     public void init(){
         RaceFactory raceFactory = new RaceFactory();
         elf = raceFactory.getElf(10,10,10,10,10,8);
+        
     }
 
     @Test

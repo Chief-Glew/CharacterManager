@@ -43,4 +43,5 @@ public abstract class Stat {
     public int getModifier() {
         return modifier;
     }
+
 }
