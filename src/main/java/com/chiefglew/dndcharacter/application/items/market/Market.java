@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.chiefglew.dndcharacter.application.items.Item;
+import com.chiefglew.dndcharacter.application.items.Valuable;
 import com.chiefglew.dndcharacter.exceptions.CouldNotHandleException;
 import com.chiefglew.dndcharacter.exceptions.OutOfStockException;
 
@@ -17,7 +18,7 @@ public class Market extends GenericMarket<Item, Integer> {
 	@Override
 	public GenericTrade<Item, Item> buyItem(String itemKey, GenericTrade<Item, Item> trade) throws OutOfStockException {
 		
-		Map<String, Integer> cost;
+		Map<Valuable, Integer> cost;
 		try {
 			cost = appraise(itemKey);
 		} catch (CouldNotHandleException e) {
@@ -26,25 +27,40 @@ public class Market extends GenericMarket<Item, Integer> {
 		}
 		
 		if (tradeContainsValuablesToCoverTheCost(trade, cost)){
-			Map<Item, Integer> itemCost = pullIemsFromCostOutOfTrade(trade, cost);
-			for (Item item : itemCost.keySet()) {
-				stock.addItemToStock(item.getValuableName(), item, itemCost.get(item));
+			//Map<Item, Integer> itemCost = pullIemsFromCostOutOfTrade(trade, cost);
+			Map<Item, Integer> selling = trade.getSelling();
+			for (Item item : selling.keySet()) {
+				stock.addItemToStock(item.getValuableName(), item, selling.get(item));
 			}
 			trade.setItem(stock.withdrawFromStock(itemKey));
 		}
 
 		return trade;
 	}
-
-	private Map<Item, Integer> pullIemsFromCostOutOfTrade(GenericTrade<Item, Item> trade, Map<String, Integer> cost) {
+	
+	@Deprecated//WIP
+	private Map<Item, Integer> pullIemsFromCostOutOfTrade(GenericTrade<Item, Item> trade, Map<Valuable, Integer> cost) {
 		Map<Item, Integer> returnMap = new HashMap<Item, Integer>();
-		
+		Map<Item, Integer> tradeMap = trade.getSelling();
+		for (Valuable itemName : cost.keySet()) {
+			int amountToPull = cost.get(itemName);
+			int currentAmount = tradeMap.getOrDefault(itemName, 0);
+//			tradeMap.
+//			tradeMap.put(itemName, currentAmount-amountToPull);
+//			returnMap.put(itemName, amountToPull);
+		}
 		return returnMap;
 	}
 
-	private boolean tradeContainsValuablesToCoverTheCost(GenericTrade<Item, Item> trade, Map<String, Integer> cost) {
-		
-		return false;
+	private boolean tradeContainsValuablesToCoverTheCost(GenericTrade<Item, Item> trade, Map<Valuable, Integer> cost) {
+		Map<Item, Integer> tradeMap = trade.getSelling();
+		for (Valuable itemName : cost.keySet()) {
+			int amountOfItem = tradeMap.getOrDefault(itemName, 0);
+			if (amountOfItem<cost.get(itemName)){
+				return false;
+			}
+		}
+		return true;
 	}
 
  

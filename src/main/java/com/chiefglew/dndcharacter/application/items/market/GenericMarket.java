@@ -17,7 +17,7 @@ public abstract class GenericMarket<Item extends Valuable, ItemMeasurement>
 	}
 
 	@Override
-	public void addStock(Item item, ItemMeasurement amount, Map<String, ItemMeasurement> cost) {
+	public void addStock(Item item, ItemMeasurement amount, Map<Valuable, ItemMeasurement> cost) {
 		stock.addItemToStock(item.getValuableName(), item, amount);
 		valueHandler.addToChain(new CustomValueHandler<ItemMeasurement>(item.getValuableName(), cost));
 	}
@@ -28,12 +28,12 @@ public abstract class GenericMarket<Item extends Valuable, ItemMeasurement>
 	}
 
 	@Override
-	public Map<String, ItemMeasurement> appraise(Item item) throws CouldNotHandleException {
+	public Map<Valuable, ItemMeasurement> appraise(Item item) throws CouldNotHandleException {
 		return valueHandler.handle(item.getValuableName());
 	}
 	
 	@Override
-	public Map<String, ItemMeasurement> appraise(String item) throws CouldNotHandleException {
+	public Map<Valuable, ItemMeasurement> appraise(String item) throws CouldNotHandleException {
 		return valueHandler.handle(item);
 	}
 }

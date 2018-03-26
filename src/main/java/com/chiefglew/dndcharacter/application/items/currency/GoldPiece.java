@@ -12,4 +12,6 @@ public class GoldPiece extends Currency {
     	protected Item duplicate() {
     		return new GoldPiece();
     	}
+    	
+    	
 }

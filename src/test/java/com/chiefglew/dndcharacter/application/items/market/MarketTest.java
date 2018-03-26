@@ -1,7 +1,6 @@
 package com.chiefglew.dndcharacter.application.items.market;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.chiefglew.dndcharacter.application.items.Item;
+import com.chiefglew.dndcharacter.application.items.Valuable;
 import com.chiefglew.dndcharacter.application.items.currency.CurrencyFactory;
 import com.chiefglew.dndcharacter.application.items.itemfactory.ItemFactory;
 import com.chiefglew.dndcharacter.config.AppConfig;
@@ -32,12 +32,12 @@ public class MarketTest {
     private Item shortSword;
     @Autowired
     private CurrencyFactory currencyFactory;
-    private Map<String, Integer> valuables;
+    private Map<Valuable, Integer> valuables;
     
     @Before
     public void init() throws OutOfStockException {
         valuables = new HashMap<>();
-        valuables.put("GoldPiece", 10);
+        valuables.putAll(currencyFactory.getGoldPieces(10));
         shortSword = itemFactory.getItem("ShortSword");
 		emptyMarket.addStock(shortSword, 10, valuables);
         trade = new ItemTrade(new HashMap<>()); //TODO look up spring @Transactional
@@ -54,9 +54,9 @@ public class MarketTest {
     
     @Test
     public void testThatAppraiseReturnsAMapWithGoldPieceTenWhenGivenShortSword() throws CouldNotHandleException{
-    	Map<String, Integer> cost = emptyMarket.appraise(shortSword);
-    	Map<String, Integer> expectedCost  = new HashMap<String, Integer>();
-    	expectedCost.put("GoldPiece", 10);
+    	Map<Valuable, Integer> cost = emptyMarket.appraise(shortSword);
+    	Map<Valuable, Integer> expectedCost  = new HashMap<Valuable, Integer>();
+    	expectedCost.putAll(currencyFactory.getGoldPieces(10));
     	assertEquals(expectedCost, cost);
     }
     
@@ -69,11 +69,14 @@ public class MarketTest {
     
     @Test
     public void testThatTradeIsUnchangedWhenItDoesntContainTheRightTypeAndAmountOfThingsToSell() throws OutOfStockException{
+    	
     	GenericTrade<Item, Item> trade = new ItemTrade(new HashMap<>());
         trade.addValuablesToSell(currencyFactory.getPlatinumPieces(10));
         GenericTrade<Item, Item> expectedTrade = new ItemTrade(new HashMap<>());
-        trade.addValuablesToSell(currencyFactory.getPlatinumPieces(10));
+        expectedTrade.addValuablesToSell(currencyFactory.getPlatinumPieces(10));
+        
         emptyMarket.buyItem("ShortSword", trade);
+        
         assertEquals(expectedTrade, trade);
     }
     
