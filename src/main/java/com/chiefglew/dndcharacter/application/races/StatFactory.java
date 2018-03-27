@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 
 import com.chiefglew.dndcharacter.application.stats.Stat;
+import org.springframework.stereotype.Component;
 
+@Component
 @Configurable
 public class StatFactory {
 	
@@ -15,7 +17,7 @@ public class StatFactory {
 
 	public Stat getStatByName(String statName){
 		for (Stat stat : stats) {
-			if(true){
+			if(statName.equals(stat.getName())){
 				return stat;
 			}
 		}
@@ -23,13 +25,26 @@ public class StatFactory {
 	}
 	
 	public Stat getStrength() {
-		// TODO Auto-generated method stub
-		return null;
+		return getStatByName("Strength");
 	}
 
 	public Stat getDexterity() {
-		// TODO Auto-generated method stub
-		return null;
+        return getStatByName("Dexterity");
+    }
+
+	public Stat getConstitution() {
+        return getStatByName("Constitution");
 	}
 
+	public Stat getIntelligence() {
+        return getStatByName("Intelligence");
+	}
+
+    public Stat getWisdom() {
+        return getStatByName("Wisdom");
+    }
+
+    public Stat getCharisma() {
+        return getStatByName("Charisma");
+    }
 }

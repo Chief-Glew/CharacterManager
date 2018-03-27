@@ -1,7 +1,10 @@
 package com.chiefglew.dndcharacter.application.stats;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Dexterity extends Stat{
-    public Dexterity(int value) {
-        super(value);
+    public Dexterity() {
+        super("Dexterity");
     }
 }

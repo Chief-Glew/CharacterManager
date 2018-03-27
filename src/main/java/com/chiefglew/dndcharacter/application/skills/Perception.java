@@ -1,13 +1,14 @@
 package com.chiefglew.dndcharacter.application.skills;
 
+import com.chiefglew.dndcharacter.application.stats.Stat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.chiefglew.dndcharacter.application.stats.Wisdom;
 
 @Component
 public class Perception extends Skill {
 
-    public Perception() {
-        super(Wisdom.class);
+    @Autowired
+    public Perception(Stat wisdom) {
+        super("Perception", wisdom);
     }
 }

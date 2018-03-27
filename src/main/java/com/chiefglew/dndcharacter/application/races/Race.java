@@ -11,25 +11,24 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 public abstract class Race implements ThingWithStats{
 
-    private Set<Stat> stats;
+    private StatHolder stats;
     private Set<Skill> skills;
     private int proficiencyModifier;
 
-    public Race(Set<Stat> stats, Set<Skill> skills, int proficiencyModifier) {
-        this.stats = stats;
-        this.skills = skills;
-        this.proficiencyModifier = proficiencyModifier;
-    }
     
-    private Race(RaceBuilder builder){
-    	
+    protected Race(RaceBuilder builder){
+    	this.proficiencyModifier = builder.proficiencyModifier;
+    	this.stats = new StatHolder(builder.stats);
+    	this.skills = builder.skills;
     }
 
     @Override
-	public Set<Stat> getStats() {
+	public StatHolder getStats() {
         return stats;
     }
 
@@ -39,31 +38,31 @@ public abstract class Race implements ThingWithStats{
 
     @Override
 	public int getModifier(Skill skill) {
-        Class<? extends Stat> statRoll = skill.getRollModifier();
-        int modifier = 0;
-        for (Stat stat : stats) {
-            if (stat.getClass() == statRoll) {
-                modifier = stat.getModifier();
-            }
-        }
+        Stat statRoll = skill.getRollModifier();
+        int value = stats.getValue(statRoll);
+        int modifier = (value-10)/2;
         if (skills.contains(skill)){
             modifier += proficiencyModifier;
         }
         return modifier;
     }
-    
-    @Configurable
-    public static abstract class RaceBuilder{
-    	
-    	@Autowired
-    	private StatFactory statFactory;
-    	
-    	private Map<Stat, Integer> stats;
 
-		public RaceBuilder(){
-    		this.stats = new HashMap<Stat, Integer>();
+    @Component
+    @Scope("prototype")
+    public static abstract class RaceBuilder{
+
+    	private StatFactory statFactory;
+    	private Set<Skill> skills;
+    	private Map<Stat, Integer> stats;
+    	private int proficiencyModifier;
+
+    	@Autowired
+		public RaceBuilder(StatFactory statFactory){
+            this.statFactory = statFactory;
+            this.stats = new HashMap<>();
+    		this.skills = new HashSet<>();
     	}
-    	//str,  dex,  con,  intel,  wis,  cha
+
     	public RaceBuilder setStrength(int value){
     		stats.put(statFactory.getStrength(), value);
     		return this; 
@@ -74,24 +73,36 @@ public abstract class Race implements ThingWithStats{
     		return this; 
     	}
     	
-    	public RaceBuilder setStrength(int value){
-    		stats.put(statFactory.getStrength(), value);
+    	public RaceBuilder setConstitution(int value){
+    		stats.put(statFactory.getConstitution(), value);
     		return this; 
     	}
     	
-    	public RaceBuilder setStrength(int value){
-    		stats.put(statFactory.getStrength(), value);
+    	public RaceBuilder setIntelligence(int value){
+    		stats.put(statFactory.getIntelligence(), value);
     		return this; 
     	}
     	
-    	public RaceBuilder setStrength(int value){
-    		stats.put(statFactory.getStrength(), value);
+    	public RaceBuilder setWisdom(int value){
+    		stats.put(statFactory.getWisdom(), value);
     		return this; 
     	}
     	
-    	public RaceBuilder setStrength(int value){
-    		stats.put(statFactory.getStrength(), value);
+    	public RaceBuilder setCharisma(int value){
+    		stats.put(statFactory.getCharisma(), value);
     		return this; 
     	}
+
+    	public RaceBuilder addProficiency(Skill skill){
+		    this.skills.add(skill);
+		    return this;
+        }
+
+        public RaceBuilder setProficiencyModifier(int value){
+		    this.proficiencyModifier = value;
+		    return this;
+        }
+
+    	public abstract Race getRace();
     }
 }

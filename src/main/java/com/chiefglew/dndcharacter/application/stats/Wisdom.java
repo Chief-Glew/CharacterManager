@@ -1,7 +1,10 @@
 package com.chiefglew.dndcharacter.application.stats;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Wisdom extends Stat {
-    public Wisdom(int value) {
-        super(value);
+    public Wisdom() {
+        super("Wisdom");
     }
 }

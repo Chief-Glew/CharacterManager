@@ -1,16 +1,31 @@
 package com.chiefglew.dndcharacter.application.races;
 
-import com.chiefglew.dndcharacter.application.skills.Skill;
-import com.chiefglew.dndcharacter.application.stats.Stat;
-
-import java.util.Set;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 public class Elf extends Race {
-    protected Elf(Set<Stat> stats, Set<Skill> skills, int proficiencyModifier) {
-        super(stats, skills, proficiencyModifier);
+
+    protected Elf(RaceBuilder elfBuilder) {
+        super(elfBuilder);
     }
-    
-    public static class ElfBuiler extends Race.RaceBuilder{
-    	
+
+    @Component
+    @Scope("prototype")
+    public static class ElfBuilder extends Race.RaceBuilder{
+
+        public ElfBuilder(StatFactory statFactory) {
+            super(statFactory);
+        }
+
+        @Override
+        public RaceBuilder setDexterity(int value){
+            super.setDexterity(value+2);
+            return this;
+        }
+
+        @Override
+        public Race getRace() {
+            return new Elf(this);
+        }
     }
 }

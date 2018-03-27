@@ -11,7 +11,9 @@ import com.chiefglew.dndcharacter.application.skills.Skill;
 import com.chiefglew.dndcharacter.application.skills.SkillFactory;
 import com.chiefglew.dndcharacter.application.stats.*;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -23,24 +25,28 @@ public class ElfTest {
     private Race elf;
     @Autowired
     private SkillFactory skillFactory;
+    @Autowired
+    private StatFactory statFactory;
+    @Autowired
+    private RaceFactory raceFactory;
 
     @Before
     public void init(){
-        RaceFactory raceFactory = new RaceFactory();
         elf = raceFactory.getElf(10,10,10,10,10,8);
         
     }
 
     @Test
-    public void testThatGetStatsReturnsAListOfStatsObjectsThatHaveAccountedForTheRacialModifiersOfAnElf(){
-        Set<Stat> stats = new HashSet<Stat>();
-        stats.add(new Strength(10));
-        stats.add(new Dexterity(12));
-        stats.add(new Constitution(10));
-        stats.add(new Intelligence(10));
-        stats.add(new Wisdom(10));
-        stats.add(new Charisma(8));
-        assertEquals(stats, elf.getStats());
+    public void testThatGetStatsReturnsAStatHolderThatHasValuesWhichHaveAccountedForTheRacialModifiersOfAnElf(){
+        Map<Stat, Integer> stats = new HashMap<>();
+        stats.put(statFactory.getStrength(),10);
+        stats.put(statFactory.getDexterity(),12);
+        stats.put(statFactory.getConstitution(),10);
+        stats.put(statFactory.getIntelligence(),10);
+        stats.put(statFactory.getWisdom(),10);
+        stats.put(statFactory.getCharisma(),8);
+        StatHolder statHolder = new StatHolder(stats);
+        assertEquals(statHolder, elf.getStats());
     }
 
     @Test

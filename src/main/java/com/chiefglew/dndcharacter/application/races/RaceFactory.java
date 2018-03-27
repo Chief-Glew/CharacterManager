@@ -1,20 +1,26 @@
 package com.chiefglew.dndcharacter.application.races;
 
-import com.chiefglew.dndcharacter.application.skills.Skill;
-import com.chiefglew.dndcharacter.application.stats.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
-import java.util.Set;
-
+@Component
+@Configurable
 public class RaceFactory {
-    public Race getElf(int str, int dex, int con, int intel, int wis, int cha) {
-        Set<Stat> stats = new HashSet<Stat>();
-        stats.add(new Strength(str));
-        stats.add(new Dexterity(dex + 2));
-        stats.add(new Constitution(con));
-        stats.add(new Intelligence(intel));
-        stats.add(new Wisdom(wis));
-        stats.add(new Charisma(cha));
-        return new Elf(stats, new HashSet<Skill>(), 2);
+
+    @Autowired
+    private StatFactory statFactory;
+
+    public Race getElf(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
+        Race.RaceBuilder elfBuilder = new Elf.ElfBuilder(statFactory);
+        elfBuilder
+                .setStrength(strength)
+                .setDexterity(dexterity)
+                .setConstitution(constitution)
+                .setIntelligence(intelligence)
+                .setWisdom(wisdom)
+                .setCharisma(charisma)
+                .setProficiencyModifier(2);
+        return elfBuilder.getRace();
     }
 }

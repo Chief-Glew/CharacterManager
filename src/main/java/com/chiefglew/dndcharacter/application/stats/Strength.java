@@ -1,8 +1,10 @@
 package com.chiefglew.dndcharacter.application.stats;
 
-public class Strength extends Stat {
+import org.springframework.stereotype.Component;
 
-    public Strength(int value) {
-        super(value);
+@Component
+public class Strength extends Stat {
+    public Strength() {
+        super("Strength");
     }
 }
