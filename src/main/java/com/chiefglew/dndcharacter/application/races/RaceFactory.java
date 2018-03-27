@@ -12,15 +12,27 @@ public class RaceFactory {
     private StatFactory statFactory;
 
     public Race getElf(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma) {
-        Race.RaceBuilder elfBuilder = new Elf.ElfBuilder(statFactory);
+        Race.RaceBuilder elfBuilder = getElfBuilder();
         elfBuilder
                 .setStrength(strength)
                 .setDexterity(dexterity)
                 .setConstitution(constitution)
                 .setIntelligence(intelligence)
                 .setWisdom(wisdom)
-                .setCharisma(charisma)
-                .setProficiencyModifier(2);
+                .setCharisma(charisma);
         return elfBuilder.getRace();
+    }
+
+    public Race.RaceBuilder getElfBuilder() {
+        Race.RaceBuilder elfBuilder = new Elf.ElfBuilder(statFactory);
+        elfBuilder
+                .setStrength(10)
+                .setDexterity(10)
+                .setConstitution(10)
+                .setIntelligence(10)
+                .setWisdom(10)
+                .setCharisma(10)
+                .setProficiencyModifier(2);
+        return elfBuilder;
     }
 }

@@ -12,9 +12,7 @@ import com.chiefglew.dndcharacter.application.skills.SkillFactory;
 import com.chiefglew.dndcharacter.application.stats.*;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
@@ -52,7 +50,7 @@ public class ElfTest {
     @Test
     public void testThatAnElfThatIsProficientInPerceptionHasAPlusTwoModifierOnPerceptionChecks(){
         Skill perception = skillFactory.getPerception();
-        elf.addProficiency(perception);
+        elf.addSkill(perception);
         assertEquals(2, elf.getModifier(perception));
     }
 

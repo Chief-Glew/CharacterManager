@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-public abstract class Race implements ThingWithStats{
+public abstract class Race implements CharacterInterface{
 
     private StatHolder stats;
     private Set<Skill> skills;
@@ -32,7 +32,12 @@ public abstract class Race implements ThingWithStats{
         return stats;
     }
 
-    public void addProficiency(Skill skill) {
+    @Override
+    public Set<Skill> getSkills(){
+        return this.skills;
+    }
+
+    public void addSkill(Skill skill) {
         this.skills.add(skill);
     }
 
