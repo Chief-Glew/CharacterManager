@@ -154,3 +154,4 @@ local.properties
 
 # End of https://www.gitignore.io/api/eclipse
 # End of https://www.gitignore.io/api/java,intellij
+/target/
