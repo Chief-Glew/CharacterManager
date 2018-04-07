@@ -9,7 +9,6 @@ public class FighterLevel1 extends Fighter{
         super(1, classBuilder);
     }
 
-
     public static class FighterLevel1Builder extends FighterBuilder{
         protected Race.RaceBuilder raceBuilder;
 

@@ -1,4 +1,6 @@
 package com.chiefglew.dndcharacter.application.races;
 
-public interface CharacterInterface extends ThingWithStats{
+import com.chiefglew.dndcharacter.backend.Idable;
+
+public interface CharacterInterface extends ThingWithStats, Idable{
 }

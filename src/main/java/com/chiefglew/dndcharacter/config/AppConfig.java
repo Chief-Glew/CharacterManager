@@ -1,10 +1,12 @@
 package com.chiefglew.dndcharacter.config;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.chiefglew.dndcharacter.application.races.CharacterInterface;
+import com.chiefglew.dndcharacter.application.races.Elf;
+import com.chiefglew.dndcharacter.application.races.StatFactory;
+import com.chiefglew.dndcharacter.backend.CRUD;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +33,33 @@ public class AppConfig {
     }
 
 
+    @Bean
+    public CRUD<CharacterInterface> getCharacterInterfaceCRUD(StatFactory statFactory){
+        return () -> new ArrayList<CharacterInterface>(
+                Arrays.asList(
+                        new Elf.ElfBuilder(statFactory)
+                                .setName("Jeff")
+                                .setIntelligence(10)
+                                .setStrength(10)
+                                .setDexterity(10)
+                                .setConstitution(10)
+                                .setWisdom(10)
+                                .setCharisma(10)
+                                .setId(1)
+                                .getRace(),
+                        new Elf.ElfBuilder(statFactory)
+                                .setName("Gregory")
+                                .setIntelligence(11)
+                                .setStrength(11)
+                                .setDexterity(11)
+                                .setConstitution(11)
+                                .setWisdom(11)
+                                .setCharisma(11)
+                                .setId(2)
+                                .getRace()
+                )
+        );
+    }
     
     @Bean
     public Map<Integer, Dice> diceMap(){

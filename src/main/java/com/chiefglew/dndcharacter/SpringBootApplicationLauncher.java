@@ -1,4 +1,4 @@
-package com.chiefglew.dndcharacter.config;
+package com.chiefglew.dndcharacter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

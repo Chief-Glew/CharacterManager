@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Character List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+<body>
+<th:block th:each="character : ${characters}">
+        <a th:href="@{'/CharacterSheet/' + ${character.id} + '/' + ${character.name}}" th:text="${character.name}"/>
+        <br/>
+</th:block>
+</body>
+</html>

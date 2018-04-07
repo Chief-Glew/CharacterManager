@@ -21,6 +21,11 @@ public abstract class Fighter implements CharacterInterface, Comparable<Fighter>
     }
 
     @Override
+    public long getId() {
+        return containedRace.getId();
+    }
+
+    @Override
     public Set<Skill> getSkills() {
         Set<Skill> skills = containedRace.getSkills();
         Set<Skill> combinedSkills = new HashSet<>();

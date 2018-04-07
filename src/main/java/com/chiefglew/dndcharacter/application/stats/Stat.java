@@ -16,4 +16,9 @@ public abstract class Stat implements Comparable<Stat>{
     public int compareTo(Stat stat){
         return this.name.compareTo(stat.name);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

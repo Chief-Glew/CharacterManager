@@ -16,6 +16,8 @@ import org.springframework.stereotype.Component;
 
 public abstract class Race implements CharacterInterface{
 
+    private final long id;
+    private final String name;
     private StatHolder stats;
     private Set<Skill> skills;
     private int proficiencyModifier;
@@ -25,6 +27,13 @@ public abstract class Race implements CharacterInterface{
     	this.proficiencyModifier = builder.proficiencyModifier;
     	this.stats = new StatHolder(builder.stats);
     	this.skills = builder.skills;
+    	this.name = builder.name;
+    	this.id = builder.id;
+    }
+
+    @Override
+    public long getId() {
+        return id;
     }
 
     @Override
@@ -52,6 +61,10 @@ public abstract class Race implements CharacterInterface{
         return modifier;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Component
     @Scope("prototype")
     public static abstract class RaceBuilder{
@@ -60,8 +73,10 @@ public abstract class Race implements CharacterInterface{
     	private Set<Skill> skills;
     	private Map<Stat, Integer> stats;
     	private int proficiencyModifier;
+        private String name;
+        private int id;
 
-    	@Autowired
+        @Autowired
 		public RaceBuilder(StatFactory statFactory){
             this.statFactory = statFactory;
             this.stats = new HashMap<>();
@@ -109,5 +124,15 @@ public abstract class Race implements CharacterInterface{
         }
 
     	public abstract Race getRace();
+
+        public RaceBuilder setName(String name){
+        	this.name = name;
+        	return this;
+		}
+
+        public RaceBuilder setId(int id) {
+            this.id = id;
+            return this;
+        }
     }
 }
