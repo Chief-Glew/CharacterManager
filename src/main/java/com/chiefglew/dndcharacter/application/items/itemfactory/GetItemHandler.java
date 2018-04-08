@@ -1,6 +1,6 @@
 package com.chiefglew.dndcharacter.application.items.itemfactory;
 
-import com.chiefglew.dndcharacter.application.GenericHandler;
+import com.chiefglew.dndcharacter.application.handlers.GenericHandler;
 import com.chiefglew.dndcharacter.application.items.Item;
 import com.chiefglew.dndcharacter.exceptions.CouldNotHandleException;
 
